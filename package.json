@@ -1,0 +1,33 @@
+{
+  "name": "find-a-pet",
+  "version": "1.0.0",
+  "description": "Find your pet",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch ./src/server.ts",
+    "build": "tsup src --out-dir build",
+    "start": "node build/server.cjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Norberto-Boa/Find-a-pet-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Norberto-Boa/Find-a-pet-api/issues"
+  },
+  "homepage": "https://github.com/Norberto-Boa/Find-a-pet-api#readme",
+  "dependencies": {
+    "fastify": "^5.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

@@ -18,6 +18,37 @@ enum ROLE {
   ORGANIZATION
 }
 
+enum ENERGY {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum SIZE {
+  SMALL
+  MEDIUM
+  BIG
+}
+
+enum ENVIRONMENT {
+  OPEN_SPACE
+  CLOSED
+  BOTH
+}
+
+enum INDEPENDENCE {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum AGE {
+  NEWBORN
+  YOUNG
+  ADULT
+  OLD
+}
+
 model User {
   id         String   @id @default(uuid())
   name       String
@@ -30,6 +61,21 @@ model User {
   role       ROLE
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  Pet        Pet[]
 
   @@map("users")
+}
+
+model Pet {
+  id           String       @id @default(uuid())
+  name         String
+  age          AGE
+  size         SIZE
+  energy_level ENERGY
+  environment  ENVIRONMENT
+  independent  INDEPENDENCE
+  breed        String
+  user_id      String
+
+  user User @relation(fields: [user_id], references: [id])
 }

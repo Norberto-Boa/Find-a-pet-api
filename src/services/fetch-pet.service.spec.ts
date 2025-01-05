@@ -1,10 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { ResourceNotFound } from "./errors/resource-not-found-error";
-import { InMemoryRequirementsRepository } from "@/repositories/in-memory/in-memory-requirements-repository";
-import { CreateRequirementService } from "./create-requirement.service";
 import { InMemoryPetsRepository } from "@/repositories/in-memory/in-memory-pets-repository";
 import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-users-repository";
-import { FetchPetService } from "./fecth-pet.service";
+import { FetchPetService } from "./fetch-pet.service";
 
 let usersRepository: InMemoryUsersRepository;
 let petsRepository: InMemoryPetsRepository;

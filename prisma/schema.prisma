@@ -85,9 +85,9 @@ model Pet {
 }
 
 model Requirement {
-  id          String @id @default(uuid())
-  pet_id      String
-  requirement String
+  id     String @id @default(uuid())
+  pet_id String
+  title  String
 
   pet Pet @relation(fields: [pet_id], references: [id])
 

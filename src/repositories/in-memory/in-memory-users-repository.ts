@@ -22,10 +22,12 @@ export class InMemoryUsersRepository implements UsersRepository {
       updated_at: new Date()
     }
 
+    this.items.push(user);
+
     return user
   }
   async findByEmail(email: string) {
-    const user = this.items.find(item => item.email === email);
+    const user = this.items.find((item) => item.email === email);
 
     if (!user) {
       return null;

@@ -50,14 +50,19 @@ enum AGE {
 }
 
 model User {
-  id         String   @id @default(uuid())
-  name       String
-  email      String
-  phone      String
-  password   String
-  latitude   Decimal
-  longitude  Decimal
-  address    String
+  id       String @id @default(uuid())
+  name     String
+  email    String
+  phone    String
+  password String
+
+  latitude  Decimal
+  longitude Decimal
+
+  province     String
+  city         String
+  neighborhood String
+
   role       ROLE
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt

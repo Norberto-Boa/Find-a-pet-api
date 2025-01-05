@@ -1,5 +1,5 @@
 import type { RequirementsRepository } from "@/repositories/requirements-repository";
-import type { UsersRepository } from "@/repositories/users-repository";
+import type { PetsRepository } from "@/repositories/pets-repository";
 import { ResourceNotFound } from "./errors/resource-not-found-error";
 
 
@@ -13,10 +13,10 @@ interface CreateRequirementServiceResponse { }
 export class CreateRequirementService {
   constructor(
     private requirementsRepository: RequirementsRepository,
-    private usersRepository: UsersRepository
+    private petsRepository: PetsRepository
   ) { };
   async execute({ pet_id, title }: CreateRequirementServiceRequest) {
-    const doesPetExist = await this.usersRepository.findById(pet_id);
+    const doesPetExist = await this.petsRepository.findById(pet_id);
 
     if (!doesPetExist) {
       throw new ResourceNotFound();

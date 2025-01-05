@@ -8,7 +8,8 @@
     "dev": "tsx watch ./src/server.ts",
     "build": "tsup src --out-dir build",
     "start": "node build/server.cjs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "repository": {
     "type": "git",
@@ -23,14 +24,18 @@
   "homepage": "https://github.com/Norberto-Boa/Find-a-pet-api#readme",
   "dependencies": {
     "@prisma/client": "6.1.0",
+    "bcryptjs": "2.4.3",
     "dotenv": "16.4.7",
     "fastify": "5.2.0",
     "zod": "3.24.1"
   },
   "devDependencies": {
+    "@types/bcryptjs": "2.4.6",
     "@types/node": "22.10.2",
     "tsup": "8.3.5",
     "tsx": "4.19.2",
-    "typescript": "5.7.2"
+    "typescript": "5.7.2",
+    "vite-tsconfig-paths": "5.1.4",
+    "vitest": "2.1.8"
   }
 }

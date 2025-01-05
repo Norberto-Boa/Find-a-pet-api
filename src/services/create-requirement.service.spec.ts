@@ -10,12 +10,12 @@ let requirementsRepository: InMemoryRequirementsRepository;
 let petsRepository: InMemoryPetsRepository;
 let sut: CreateRequirementService;
 
-describe("Create Pet Service", () => {
+describe("Create Requirement Service", () => {
 
   beforeEach(async () => {
     usersRepository = new InMemoryUsersRepository();
     requirementsRepository = new InMemoryRequirementsRepository();
-    petsRepository = new InMemoryPetsRepository();
+    petsRepository = new InMemoryPetsRepository(usersRepository);
     sut = new CreateRequirementService(requirementsRepository, petsRepository);
   })
 

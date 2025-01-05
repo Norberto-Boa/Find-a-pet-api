@@ -56,4 +56,15 @@ describe("Authentication Service", () => {
     }).rejects.toBeInstanceOf(InvalidCredentials);
 
   })
+
+  it("should throw an error when email is invalid", async () => {
+
+    await expect(async () => {
+      await sut.execute({
+        email: "john.de@example.com",
+        password: "password123"
+      })
+    }).rejects.toBeInstanceOf(InvalidCredentials);
+
+  })
 })

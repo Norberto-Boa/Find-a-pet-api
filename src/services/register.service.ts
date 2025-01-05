@@ -11,7 +11,9 @@ interface RegisterServiceRequest {
   latitude: number;
   role: "ADMIN" | "ORGANIZATION";
   phone: string;
-  address: string;
+  city: string;
+  province: string;
+  neighborhood: string;
 }
 
 interface RegisterServiceResponse {
@@ -25,7 +27,9 @@ export class RegisterService {
     name,
     email,
     password,
-    address,
+    city,
+    province,
+    neighborhood,
     latitude,
     longitude,
     role,
@@ -43,7 +47,9 @@ export class RegisterService {
       name,
       email,
       password: passwordHash,
-      address,
+      city,
+      province,
+      neighborhood,
       latitude,
       longitude,
       phone,

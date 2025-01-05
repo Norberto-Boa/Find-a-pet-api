@@ -17,7 +17,9 @@ export class InMemoryUsersRepository implements UsersRepository {
       latitude: new Decimal(data.latitude.toString()),
       role: data.role,
       phone: data.phone,
-      address: data.address,
+      city: data.city,
+      province: data.province,
+      neighborhood: data.neighborhood,
       created_at: new Date(),
       updated_at: new Date()
     }

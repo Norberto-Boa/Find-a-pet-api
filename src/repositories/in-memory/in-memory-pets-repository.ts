@@ -1,10 +1,13 @@
 import type { Prisma, Pet } from "@prisma/client";
-import type { PetsRepository } from "../pets-repository";
+import type { FetchPetParams, PetsRepository } from "../pets-repository";
 import { randomUUID } from "node:crypto";
+import type { InMemoryUsersRepository } from "./in-memory-users-repository";
 
 
 export class InMemoryPetsRepository implements PetsRepository {
   private items: Pet[] = [];
+
+  constructor(private usersRepository: InMemoryUsersRepository) { };
 
   async create(data: Prisma.PetUncheckedCreateInput) {
     const pet = {
@@ -34,5 +37,16 @@ export class InMemoryPetsRepository implements PetsRepository {
     }
 
     return pet
+  }
+
+  async fetchMany({ city, size, age, page }: FetchPetParams) {
+    const usersInTheCity = this.usersRepository.items.filter((org) => org.city === city);
+    const userIdsInCity = new Set(usersInTheCity.map(user => user.id));
+
+    const pets = this.items
+      .filter(item => userIdsInCity.has(item.user_id))
+      .slice((page - 1) * 20, page * 20);
+
+    return pets;
   }
 }

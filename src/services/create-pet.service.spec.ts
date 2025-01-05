@@ -3,6 +3,7 @@ import { InMemoryPetsRepository } from "@/repositories/in-memory/in-memory-pets-
 import { beforeEach, describe, expect, it } from "vitest";
 import { CreatePetService } from "./create-pet.service";
 import { hash } from "bcryptjs";
+import { ResourceNotFound } from "./errors/resource-not-found-error";
 
 let petsRepository: InMemoryPetsRepository;
 let usersRepository: InMemoryUsersRepository;
@@ -41,4 +42,21 @@ describe("Create Pet Service", () => {
 
     expect(pet.id).toEqual(expect.any(String));
   })
+
+  it("Should not be able to create a pet if user is invalid", async () => {
+    await expect(async () => {
+      await sut.execute({
+        name: "Buddy",
+        age: "NEWBORN",
+        size: "MEDIUM",
+        energy_level: "MEDIUM",
+        environment: "CLOSED",
+        breed: "Buerbull",
+        independent: "HIGH",
+        user_id: "user.id"
+      })
+    }).rejects.toBeInstanceOf(ResourceNotFound);
+  })
+
+
 })

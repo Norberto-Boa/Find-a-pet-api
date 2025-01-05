@@ -77,5 +77,30 @@ model Pet {
   breed        String
   user_id      String
 
-  user User @relation(fields: [user_id], references: [id])
+  user        User          @relation(fields: [user_id], references: [id])
+  Requirement Requirement[]
+  Image       Image[]
+
+  @@map("pets")
+}
+
+model Requirement {
+  id          String @id @default(uuid())
+  pet_id      String
+  requirement String
+
+  pet Pet @relation(fields: [pet_id], references: [id])
+
+  @@map("requirements")
+}
+
+model Image {
+  id      String  @id @default(uuid())
+  pet_id  String
+  url     String
+  profile Boolean
+
+  pet Pet @relation(fields: [pet_id], references: [id])
+
+  @@map("images")
 }

@@ -12,7 +12,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     province: z.string({ required_error: "Province is required" }),
     latitude: z.coerce.number({ required_error: "Latitude is required" }),
     longitude: z.coerce.number({ required_error: "Longitude is required" }),
-    phone: z.string({ required_error: "Phone number is required" }).regex(new RegExp("\d"), { message: "Phone number should only contain numbers" })
+    phone: z.string({ required_error: "Phone number is required" }).regex(new RegExp("^\\d+$"), { message: "Phone number should only contain numbers" })
   });
 
   const {

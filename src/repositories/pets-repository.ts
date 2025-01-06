@@ -1,4 +1,4 @@
-import type { Pet, Prisma } from "@prisma/client";
+import type { Pet, Prisma, User } from "@prisma/client";
 
 export interface FetchPetParams {
   city: string;
@@ -9,6 +9,6 @@ export interface FetchPetParams {
 
 export interface PetsRepository {
   create(data: Prisma.PetUncheckedCreateInput): Promise<Pet>
-  findById(id: string): Promise<Pet | null>
+  findById(id: string): Promise<{ pet: Pet, organization: User } | null>
   fetchMany(params: FetchPetParams): Promise<Pet[]>
 }

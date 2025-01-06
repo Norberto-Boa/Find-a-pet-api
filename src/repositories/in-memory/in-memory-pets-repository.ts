@@ -30,13 +30,19 @@ export class InMemoryPetsRepository implements PetsRepository {
   }
 
   async findById(id: string) {
-    const pet = this.items.find((item) => item.id === id);
+    const pet = await this.items.find((item) => item.id === id);
 
     if (!pet) {
       return null
     }
 
-    return pet
+    const organization = await this.usersRepository.findById(pet.user_id);
+
+    if (!organization) {
+      return null
+    }
+
+    return { pet, organization };
   }
 
   async fetchMany({ city, size, age, page }: FetchPetParams) {

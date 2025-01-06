@@ -45,6 +45,8 @@ export class InMemoryPetsRepository implements PetsRepository {
 
     const pets = this.items
       .filter(item => userIdsInCity.has(item.user_id))
+      .filter(item => size ? item.size === size : true)
+      .filter(item => age ? item.age === age : true)
       .slice((page - 1) * 20, page * 20);
 
     return pets;

@@ -85,4 +85,26 @@ describe("Fetch Pet Service", () => {
       await sut.execute({ city: "", page: 1 });
     }).rejects.toBeInstanceOf(CityNotProvided);
   });
+
+  it("should fetch pets based on characteristics", async () => {
+    await petsRepository.create({
+      name: "Off Town Pet",
+      age: "ADULT",
+      size: "BIG",
+      energy_level: "MEDIUM",
+      environment: "CLOSED",
+      breed: "Buerbull",
+      independent: "HIGH",
+      user_id: "user"
+    });
+
+    const { pets } = await sut.execute({ city: "Maputo", age: "NEWBORN", page: 1 });
+
+    expect(pets.length).toEqual(1);
+    expect(pets).toEqual([
+      expect.objectContaining({
+        age: "NEWBORN"
+      }),
+    ])
+  })
 })

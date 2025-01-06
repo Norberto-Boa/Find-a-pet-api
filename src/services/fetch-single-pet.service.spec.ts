@@ -33,7 +33,7 @@ describe("Fetch Pet Service", () => {
 
   })
 
-  it("Should be fecth a single pet", async () => {
+  it("Should be able to fecth a single pet", async () => {
     // Creating In town pet
     const newPet = await petsRepository.create({
       name: "In Town Pet",
@@ -46,7 +46,7 @@ describe("Fetch Pet Service", () => {
       user_id: "user"
     });
 
-    const { pet } = await sut.execute({ id: newPet.id });
+    const { pet, organizatio } = await sut.execute({ id: newPet.id });
 
     expect(pet.id).toEqual(newPet.id);
     expect(pet.name).toEqual("In Town Pet");

@@ -30,7 +30,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 
 
   const registerService = makeRegisterService();
-  const user = registerService.execute({
+  const { user } = await registerService.execute({
     name,
     email,
     password,

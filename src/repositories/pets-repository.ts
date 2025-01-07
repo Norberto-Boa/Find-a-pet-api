@@ -2,8 +2,8 @@ import type { Pet, Prisma, User } from "@prisma/client";
 
 export interface FetchPetParams {
   city: string;
-  age?: string;
-  size?: string;
+  age?: "NEWBORN" | "YOUNG" | "ADULT" | "OLD";
+  size?: "SMALL" | "MEDIUM" | "BIG";
   page: number;
 }
 

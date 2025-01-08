@@ -27,7 +27,7 @@ export class PrismaPetsRepository implements PetsRepository {
     return pet;
   }
 
-  async findById(id: string): Promise<{ pet: Pet; organization: User; } | null> {
+  async findById(id: string) {
     const pet = await prisma.pet.findUnique({
       where: {
         id
@@ -41,6 +41,6 @@ export class PrismaPetsRepository implements PetsRepository {
       return null;
     }
 
-    return { pet: pet, organization: pet?.user }
+    return pet;
   }
 }

@@ -9,6 +9,6 @@ export interface FetchPetParams {
 
 export interface PetsRepository {
   create(data: Prisma.PetUncheckedCreateInput): Promise<Pet>
-  findById(id: string): Promise<{ pet: Pet, organization: User } | null>
+  findById(id: string): Promise<Prisma.PetGetPayload<{ include: { user: true } }> | null>
   fetchMany(params: FetchPetParams): Promise<Pet[]>
 }

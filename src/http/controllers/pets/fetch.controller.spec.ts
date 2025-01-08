@@ -13,29 +13,10 @@ describe("Create Pet Controller e2e", () => {
     await app.close();
   })
 
-  it("should be able to create a pet", async () => {
-    const token = await createAndAuthenticateUser(app);
-
-    const response = await request(app.server)
-      .post("/pet/create")
-      .set("Authorization", "Bearer " + token)
-      .send({
-        name: "Buddy",
-        age: "NEWBORN",
-        size: "MEDIUM",
-        energy_level: "MEDIUM",
-        environment: "CLOSED",
-        breed: "Buerbull",
-        independent: "HIGH",
-      })
-
-    expect(response.statusCode).toEqual(200);
-  })
-
   it("should be able to create a pet with requirements", async () => {
     const token = await createAndAuthenticateUser(app);
 
-    const response = await request(app.server)
+    const pet = await request(app.server)
       .post("/pet/create")
       .set("Authorization", "Bearer " + token)
       .send({
@@ -51,12 +32,15 @@ describe("Create Pet Controller e2e", () => {
         ]
       })
 
+
+    const response = await request(app.server).get(`/pet/${pet.body.pet.id}`)
+
     expect(response.statusCode).toEqual(200);
     expect(response.body).toEqual(
       expect.objectContaining({
-        requirements: [
-          "Be rich", "Be super Rich"
-        ]
+        pet: expect.objectContaining({
+          id: pet.body.pet.id
+        })
       })
     )
   })

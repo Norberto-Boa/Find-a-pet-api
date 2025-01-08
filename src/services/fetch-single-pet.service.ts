@@ -20,6 +20,6 @@ export class FetchSinglePetService {
       throw new ResourceNotFound();
     }
 
-    return { pet: pet.pet, organizatio: pet.organization };
+    return { pet };
   }
 }

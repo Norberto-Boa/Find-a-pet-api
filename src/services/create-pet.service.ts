@@ -60,7 +60,7 @@ export class CreatePetService {
 
     if (requirements) {
       for (const item of requirements) {
-        const created = await this.requirementsRepository.create({
+        await this.requirementsRepository.create({
           title: item,
           pet_id: pet.id,
         });

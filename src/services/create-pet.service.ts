@@ -59,19 +59,13 @@ export class CreatePetService {
     let createdRequirements: string[] = [];
 
     if (requirements) {
-      // createdRequirements = requirements.map(async (item) => await this.requirementsRepository.create({
-      //   title: item,
-      //   pet_id: pet.id
-      // }))
-
-      requirements.forEach((item) => {
-        this.requirementsRepository.create({
+      for (const item of requirements) {
+        const created = await this.requirementsRepository.create({
           title: item,
-          pet_id: pet.id
-        })
-
+          pet_id: pet.id,
+        });
         createdRequirements.push(item);
-      })
+      }
     }
 
     if (createdRequirements) {

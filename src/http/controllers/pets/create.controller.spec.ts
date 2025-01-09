@@ -2,6 +2,7 @@ import request from "supertest";
 import { app } from "@/app";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createAndAuthenticateUser } from "@/utils/test/create-and-authenticate-user";
+import { makePet } from "test/factories/make-pet";
 
 describe("Create Pet Controller e2e", () => {
   beforeAll(async () => {
@@ -19,17 +20,9 @@ describe("Create Pet Controller e2e", () => {
     const response = await request(app.server)
       .post("/pet/create")
       .set("Authorization", "Bearer " + token)
-      .send({
-        name: "Buddy",
-        age: "NEWBORN",
-        size: "MEDIUM",
-        energy_level: "MEDIUM",
-        environment: "CLOSED",
-        breed: "Buerbull",
-        independent: "HIGH",
-      })
+      .send(makePet())
 
-    expect(response.statusCode).toEqual(200);
+    expect(response.statusCode).toEqual(201);
   })
 
   it("should be able to create a pet with requirements", async () => {
@@ -51,7 +44,7 @@ describe("Create Pet Controller e2e", () => {
         ]
       })
 
-    expect(response.statusCode).toEqual(200);
+    expect(response.statusCode).toEqual(201);
     expect(response.body).toEqual(
       expect.objectContaining({
         requirements: [

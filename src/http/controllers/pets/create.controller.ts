@@ -30,7 +30,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     requirements: requirementsToCreate
   });
 
-  return reply.status(200).send({
+  return reply.status(201).send({
     pet, requirements: requirements ? requirements : []
   });
 }

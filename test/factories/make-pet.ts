@@ -1,19 +1,20 @@
 import { faker } from "@faker-js/faker";
 
-interface overwrite {
-  userId: string;
+interface Overwrite {
+  age?: "NEWBORN" | "YOUNG" | "ADULT" | "OLD",
+  size?: "SMALL" | "MEDIUM" | "BIG",
+  energy_level?: "LOW" | "MEDIUM" | "HIGH"
 }
 
-export function makePet({ userId }: overwrite) {
+export function makePet(overwrite?: Overwrite) {
   return {
-    name: faker.animal.petName,
+    name: faker.animal.petName(),
     age: faker.helpers.arrayElement(["NEWBORN", "YOUNG", "ADULT", "OLD"]),
     size: faker.helpers.arrayElement(["SMALL", "MEDIUM", "BIG"]),
     energy_level: faker.helpers.arrayElement(["LOW", "MEDIUM", "HIGH"]),
     environment: faker.helpers.arrayElement(["OPEN_SPACE", "CLOSED", "BOTH"]),
-    breed: faker.animal.dog,
+    breed: faker.animal.dog(),
     independent: faker.helpers.arrayElement(["LOW", "MEDIUM", "HIGH"]),
-    user_id: userId,
     requirements: [
       faker.lorem.words(4),
       faker.lorem.words(5),

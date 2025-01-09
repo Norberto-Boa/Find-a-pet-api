@@ -42,7 +42,7 @@ export class InMemoryPetsRepository implements PetsRepository {
       return null
     }
 
-    return { pet, organization };
+    return { ...pet, user: organization };
   }
 
   async fetchMany({ city, size, age, page }: FetchPetParams) {
